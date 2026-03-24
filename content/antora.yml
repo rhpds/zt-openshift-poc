@@ -1,4 +1,22 @@
 ---
-
 name: modules
 version: master
+
+asciidoc:
+  attributes:
+    lab_name: "Single Node OpenShift - Zero Touch Lab"
+    release-version: master
+    page-pagination: true
+    openshift_console_url: https://console-openshift-console.apps.example.com
+    openshift_api_url: https://api.example.com:6443
+    openshift_cluster_ingress_domain: apps.example.com
+    openshift_cluster_admin_username: kubeadmin
+    openshift_cluster_admin_password: PLACEHOLDER
+    guid: my-guid
+    ssh_user: lab-user
+    ssh_password: password
+    ssh_command: ssh lab-user@bastion.example.com
+    environment_variables:
+      guid: my-guid
+      domain: example.com
+      openshift_cluster_ingress_domain: apps.example.com

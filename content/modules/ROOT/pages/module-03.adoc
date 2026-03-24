@@ -1,29 +1,69 @@
-= Tabs
+= CLI Access
 
-[source,yaml]
+== Logging In with the CLI
+
+Open the terminal tab and log in to the OpenShift cluster:
+
+[source,bash,subs=attributes]
 ----
-tabs:
-  - name: ">_ terminal"
-    type: "terminal"
-  - name: "Asciidoc Doc"
-    url: https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/
-    external: true
+oc login --insecure-skip-tls-verify -u {openshift_cluster_admin_username} {openshift_api_url}
 ----
 
-=== Explanation
+When prompted, enter the password: `{openshift_cluster_admin_password}`
 
-- `name`: The label that appears on the tab in the UI.
-- `type`: Defines the tab layout. Options include:
-  - `terminal`: For a single terminal-like block.
-  - `double-terminal`: For a side-by-side terminal view.
-- `url`: Used to link to an external page.
-- `path`: (If no url is defined) The base path where the service will be served, e.g., `/tty`.
-- `port`: (If no url is defined) The port where the service will be served, e.g., `3000`.
-- `external`: If `true`, the link opens in a new tab/window.
+== Verifying the Cluster
 
-== Resulting UI
+Check the cluster nodes:
 
-You might see two tabs in your UI:
-- A terminal emulator style display
-- A link to AsciiDoc syntax reference
+[source,bash]
+----
+oc get nodes
+----
 
+You should see a single node with roles `control-plane,master,worker`.
+
+List all cluster operators:
+
+[source,bash]
+----
+oc get clusteroperators
+----
+
+== Deploying a Sample Application
+
+Create a new project:
+
+[source,bash]
+----
+oc new-project test-app
+----
+
+Deploy a sample httpd application from source:
+
+[source,bash]
+----
+oc new-app httpd~https://github.com/sclorg/httpd-ex.git
+----
+
+Watch the build progress:
+
+[source,bash]
+----
+oc logs -f buildconfig/httpd-ex
+----
+
+Once the build completes, expose the service:
+
+[source,bash]
+----
+oc expose service httpd-ex
+----
+
+Get the route URL:
+
+[source,bash]
+----
+oc get route httpd-ex -o jsonpath='{.spec.host}'
+----
+
+You can open this URL in a new browser tab to see your deployed application.

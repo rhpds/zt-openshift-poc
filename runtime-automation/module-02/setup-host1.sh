@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "Starting module called module-02" >> /tmp/progress.log
+echo "Starting module-02: OpenShift Console" >> /tmp/progress.log

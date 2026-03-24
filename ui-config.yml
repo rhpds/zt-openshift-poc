@@ -1,21 +1,18 @@
 ---
-
 antora:
   name: modules
   dir: www
   modules:
     - name: module-01
-      label: "Writing your lab"
-      solveButton: true
+      label: "Environment Overview"
     - name: module-02
-      label: "Antora"
-      solveButton: true
+      label: "OpenShift Console"
     - name: module-03
-      label: "Tabs"
+      label: "CLI Access"
+      solveButton: true
 
 tabs:
   - name: ">_ terminal"
     url: /wetty
-  - name: "Asciidoc Doc"
-    url: https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/
-    external: true
+  - name: "OpenShift Console"
+    url: https://console-openshift-console.${openshift_cluster_ingress_domain}

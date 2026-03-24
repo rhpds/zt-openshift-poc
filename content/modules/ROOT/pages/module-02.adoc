@@ -1,28 +1,30 @@
-= Antora
+= OpenShift Console
 
-The `antora` key in `ui-config.yml` defines how the documentation site is built using Antora.
+== Accessing the Web Console
 
-[source,yaml]
-----
-antora:
-  name: modules
-  dir: www
-  modules:
-    - name: module-01 
-      label: "Writing your lab"
-    - name: module-02
-      label: "Antora"
-    - name: module-03
-      label: "Tabs"
-----
+The OpenShift web console is embedded in the *OpenShift Console* tab on the right side of your screen.
 
-=== Explanation
+You can also open it directly in a new browser tab:
 
-- `name`: The name of the documentation folder, here called `modules`.
-- `dir`: The directory where the documentation files will be located (`www`). 
-- `modules`: The list of modules that make up your lab.
+{openshift_console_url}
 
-Each module has:
+== Logging In
 
-- `name`: The file name within the `pages` directory.
-- `label`: A human-readable label for display in navigation.
+Use the following credentials:
+
+[cols="1,2"]
+|===
+| Username | {openshift_cluster_admin_username}
+| Password | {openshift_cluster_admin_password}
+|===
+
+== Exploring the Console
+
+Once logged in, explore the following areas:
+
+* *Home > Overview* -- cluster status, resource utilization, and health
+* *Operators > Installed Operators* -- pre-installed operators on the cluster
+* *Workloads > Pods* -- running pods across namespaces
+* *Networking > Routes* -- exposed application endpoints
+
+TIP: Switch between the *Administrator* and *Developer* perspectives using the dropdown in the top-left navigation.
